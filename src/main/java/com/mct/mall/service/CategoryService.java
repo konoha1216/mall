@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date: Created in 2021/8/22 4:19 下午
  * @version:v1.0
  */
-@Service
 public interface CategoryService {
 
     void add(AddCategoryRequest addCategoryRequest);
