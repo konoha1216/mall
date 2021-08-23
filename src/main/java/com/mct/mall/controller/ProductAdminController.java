@@ -4,8 +4,11 @@ import com.mct.mall.common.ApiRestResponse;
 import com.mct.mall.common.Constant;
 import com.mct.mall.exception.MallException;
 import com.mct.mall.exception.MallExceptionEnum;
+import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.request.AddProductRequest;
+import com.mct.mall.model.request.UpdateProductRequest;
 import com.mct.mall.service.ProductService;
+import io.swagger.annotations.ApiOperation;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -14,6 +17,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +37,7 @@ public class ProductAdminController {
     @Resource
     ProductService productService;
 
+    @ApiOperation("添加商品")
     @PostMapping("admin/product/add")
     @ResponseBody
     public ApiRestResponse addProduct(@Valid @RequestBody AddProductRequest addProductRequest) {
@@ -40,6 +45,7 @@ public class ProductAdminController {
         return ApiRestResponse.success();
     }
 
+    @ApiOperation("上传图片")
     @PostMapping("admin/upload/file")
     @ResponseBody
     public ApiRestResponse upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
@@ -78,4 +84,21 @@ public class ProductAdminController {
         return effectiveURI;
     }
 
+    @ApiOperation("更新商品")
+    @PostMapping("admin/product/update")
+    @ResponseBody
+    public ApiRestResponse update(@Valid @RequestBody UpdateProductRequest request) {
+        Product product = new Product();
+        BeanUtils.copyProperties(request, product);
+        productService.updateProduct(product);
+        return ApiRestResponse.success();
+    }
+
+    @ApiOperation("删除商品")
+    @PostMapping("admin/product/delete")
+    @ResponseBody
+    public ApiRestResponse delete(@Valid @RequestParam Integer id) {
+        productService.deleteProduct(id);
+        return ApiRestResponse.success();
+    }
 }

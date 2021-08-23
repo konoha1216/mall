@@ -1,5 +1,6 @@
 package com.mct.mall.service;
 
+import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.request.AddProductRequest;
 
 /**
@@ -12,4 +13,8 @@ import com.mct.mall.model.request.AddProductRequest;
 public interface ProductService {
 
     void addProduct(AddProductRequest addProductRequest);
+
+    void updateProduct(Product product);
+
+    void deleteProduct(Integer id);
 }
