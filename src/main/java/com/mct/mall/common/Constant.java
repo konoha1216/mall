@@ -15,6 +15,7 @@ public class Constant {
     public static final String MCT_MALL_USER = "mct_mall_user";
     public static final String SALT = "fhiuswy4982r2$%f@#$";
 
+    // 处理上传图片时静态资源映射
     public static String FILE_UPLOAD_DIR;
     @Value ("${file.upload.dir}")
     public void setFileUploadDir(String fileUploadDir) {
