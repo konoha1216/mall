@@ -8,6 +8,7 @@ import com.mct.mall.model.request.AddProductRequest;
 import com.mct.mall.service.ProductService;
 import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 /**
  * @description: TODO
@@ -16,6 +17,7 @@ import org.springframework.beans.BeanUtils;
  * @date: Created in 2021/8/22 11:49 下午
  * @version:v1.0
  */
+@Service
 public class ProductServiceImpl implements ProductService {
     @Resource
     ProductMapper productMapper;
