@@ -1,6 +1,5 @@
 package com.mct.mall.model.request;
 
-import java.util.Date;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
