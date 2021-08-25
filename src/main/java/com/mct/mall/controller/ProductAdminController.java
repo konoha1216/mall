@@ -101,4 +101,12 @@ public class ProductAdminController {
         productService.deleteProduct(id);
         return ApiRestResponse.success();
     }
+
+    @ApiOperation("批量上下架商品")
+    @PostMapping("admin/product/batchUpdateSellStatus")
+    @ResponseBody
+    public ApiRestResponse batchUpdateSellStatus(@Valid @RequestParam Integer[] ids, @Valid @RequestParam Integer sellStatus) {
+        productService.batchUpdateSellStatus(ids, sellStatus);
+        return ApiRestResponse.success();
+    }
 }

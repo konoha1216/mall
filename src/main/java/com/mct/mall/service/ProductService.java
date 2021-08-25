@@ -17,4 +17,6 @@ public interface ProductService {
     void updateProduct(Product product);
 
     void deleteProduct(Integer id);
+
+    void batchUpdateSellStatus(Integer[] ids, Integer sellStatus);
 }
