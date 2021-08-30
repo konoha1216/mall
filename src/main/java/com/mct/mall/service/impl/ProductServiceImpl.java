@@ -1,14 +1,19 @@
 package com.mct.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mct.mall.exception.MallException;
 import com.mct.mall.exception.MallExceptionEnum;
 import com.mct.mall.model.dao.ProductMapper;
+import com.mct.mall.model.pojo.Category;
 import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.request.AddProductRequest;
 import com.mct.mall.service.ProductService;
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @description: TODO
@@ -70,5 +75,22 @@ public class ProductServiceImpl implements ProductService {
         if (cnt > 0 && cnt != ids.length) {
             throw new MallException(MallExceptionEnum.UPDATE_PART_FAILED);
         }
+    }
+
+    @Override
+    public PageInfo listForAdmin(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> productList = productMapper.selectList();
+        PageInfo pageInfo = new PageInfo(productList);
+        return pageInfo;
+    }
+
+    @Override
+    public Product detail(Integer id) {
+        Product product = productMapper.selectByPrimaryKey(id);
+        if (product == null) {
+            throw new MallException(MallExceptionEnum.PRODUCT_FETCH_FAILED);
+        }
+        return product;
     }
 }

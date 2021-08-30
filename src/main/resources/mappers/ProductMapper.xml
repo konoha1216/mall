@@ -164,4 +164,10 @@
       #{id}
     </foreach>
   </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from mct_mall_product
+    order by update_time desc
+  </select>
 </mapper>

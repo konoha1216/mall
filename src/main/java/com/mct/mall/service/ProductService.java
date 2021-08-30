@@ -1,7 +1,9 @@
 package com.mct.mall.service;
 
+import com.github.pagehelper.PageInfo;
 import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.request.AddProductRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @description: TODO
@@ -19,4 +21,8 @@ public interface ProductService {
     void deleteProduct(Integer id);
 
     void batchUpdateSellStatus(Integer[] ids, Integer sellStatus);
+
+    PageInfo listForAdmin(@RequestParam Integer pageNum, @RequestParam Integer pageSize);
+
+    Product detail(Integer id);
 }
