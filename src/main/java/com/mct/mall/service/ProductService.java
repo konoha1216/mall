@@ -3,6 +3,7 @@ package com.mct.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.request.AddProductRequest;
+import com.mct.mall.model.request.ProductListRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -25,4 +26,6 @@ public interface ProductService {
     PageInfo listForAdmin(@RequestParam Integer pageNum, @RequestParam Integer pageSize);
 
     Product detail(Integer id);
+
+    PageInfo list(ProductListRequest request);
 }

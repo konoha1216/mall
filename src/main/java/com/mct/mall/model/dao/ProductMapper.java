@@ -1,6 +1,7 @@
 package com.mct.mall.model.dao;
 
 import com.mct.mall.model.pojo.Product;
+import com.mct.mall.model.query.ProductListQuery;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +23,6 @@ public interface ProductMapper {
     int batchUpdateSellStatus(@Param("ids") Integer[] ids, @Param("sellStatus") Integer sellStatus);
 
     List<Product> selectList();
+
+    List<Product> selectListForUsers(@Param("query") ProductListQuery query);
 }
