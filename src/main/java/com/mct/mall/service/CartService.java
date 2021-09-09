@@ -1,5 +1,8 @@
 package com.mct.mall.service;
 
+import com.mct.mall.model.vo.CartVO;
+import java.util.List;
+
 /**
  * @description: TODO
  * @author: zhengran
@@ -9,4 +12,5 @@ package com.mct.mall.service;
  */
 public interface CartService {
 
+    List<CartVO> add(Integer userId, Integer productId, Integer count);
 }

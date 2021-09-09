@@ -32,4 +32,9 @@ public class Constant {
         int NOT_SALE = 0;
         int SALE = 1;
     }
+
+    public interface Cart {
+        int UN_CHECKED = 0; // cart record not selected
+        int CHECKED = 1; // cart record selected
+    }
 }
