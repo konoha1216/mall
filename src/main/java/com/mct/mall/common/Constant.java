@@ -27,4 +27,9 @@ public class Constant {
     public interface ProductListOrderBy {
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price asc", "price desc");
     }
+
+    public interface SaleStatus {
+        int NOT_SALE = 0;
+        int SALE = 1;
+    }
 }

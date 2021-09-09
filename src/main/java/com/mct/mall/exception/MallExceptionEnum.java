@@ -25,6 +25,8 @@ public enum MallExceptionEnum {
     UPLOAD_FAILED(10015, "图片上传失败"),
     UPDATE_PART_FAILED(10016, "部分更新失败"),
     PRODUCT_FETCH_FAILED(10017, "商品获取失败"),
+    NOT_SALE(10018, "商品状态不可售"),
+    NOT_ENOUGH(10019, "库存不足"),
 
     SYSTEM_ERROR(20001,"系统异常");
     Integer code;
