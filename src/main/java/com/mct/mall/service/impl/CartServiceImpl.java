@@ -38,7 +38,6 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartVO> add(Integer userId, Integer productId, Integer count) {
         validProduct(productId, count);
-        //TODO
         Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
         if (cart == null) {
             // not in cart before, need to add a new cart record
@@ -69,5 +68,34 @@ public class CartServiceImpl implements CartService {
         if (count > product.getStock()) {
             throw new MallException(MallExceptionEnum.NOT_ENOUGH);
         }
+    }
+
+    @Override
+    public List<CartVO> update(Integer userId, Integer productId, Integer count) {
+        validProduct(productId, count);
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
+        if (cart == null) {
+            // not in cart before, error occurs
+            throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+        } else {
+            // already in cart, need to update the quantity
+            cart.setQuantity(count);
+            cart.setSelected(Constant.Cart.CHECKED);
+            cartMapper.updateByPrimaryKeySelective(cart);
+        }
+        return this.list(userId);
+    }
+
+    @Override
+    public List<CartVO> delete(Integer userId, Integer productId) {
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
+        if (cart == null) {
+            // not in cart before, error occurs
+            throw new MallException(MallExceptionEnum.DELETE_FAILED);
+        } else {
+            // already in cart, need to delete
+            cartMapper.deleteByPrimaryKey(cart.getId());
+        }
+        return this.list(userId);
     }
 }
