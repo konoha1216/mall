@@ -7,6 +7,8 @@ import com.mct.mall.service.CartService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,12 +28,20 @@ public class CartController {
     @Resource
     CartService cartService;
 
+    @ApiOperation("query cart list")
+    @GetMapping("/list")
+    public ApiRestResponse list() {
+        Integer userId = UserFilter.currentUser.getId();
+        List<CartVO> cartVOS = cartService.list(userId);
+        return ApiRestResponse.success(cartVOS);
+    }
+
     @ApiOperation("add a product record into the cart")
     @PostMapping("/add")
     public ApiRestResponse add(@RequestParam Integer productId, @RequestParam Integer count) {
         Integer userId = UserFilter.currentUser.getId();
-        List<CartVO> add = cartService.add(userId, productId, count);
-        return ApiRestResponse.success();
+        List<CartVO> cartVOS = cartService.add(userId, productId, count);
+        return ApiRestResponse.success(cartVOS);
     }
 
 }

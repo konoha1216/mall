@@ -29,6 +29,13 @@ public class CartServiceImpl implements CartService {
     @Resource CartMapper cartMapper;
 
     @Override
+    public List<CartVO> list(Integer userId) {
+        List<CartVO> cartVOS = cartMapper.selectList(userId);
+        cartVOS.stream().forEach(e -> e.setTotalPrice(e.getPrice() * e.getQuantity()));
+        return cartVOS;
+    }
+
+    @Override
     public List<CartVO> add(Integer userId, Integer productId, Integer count) {
         validProduct(productId, count);
         //TODO
@@ -48,7 +55,7 @@ public class CartServiceImpl implements CartService {
             cart.setSelected(Constant.Cart.CHECKED);
             cartMapper.updateByPrimaryKeySelective(cart);
         }
-        return null;
+        return this.list(userId);
     }
 
     private void validProduct(Integer productId, Integer count) {

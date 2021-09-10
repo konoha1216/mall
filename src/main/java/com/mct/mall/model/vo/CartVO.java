@@ -23,6 +23,10 @@ public class CartVO {
 
     private Integer totalPrice;
 
+    private String productName;
+
+    private String productImage;
+
     public Integer getId() {
         return id;
     }
@@ -95,7 +99,4 @@ public class CartVO {
         this.productImage = productImage;
     }
 
-    private String productName;
-
-    private  String productImage;
 }
