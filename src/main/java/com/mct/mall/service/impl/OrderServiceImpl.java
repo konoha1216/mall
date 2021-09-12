@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -51,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     OrderItemMapper orderItemMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public String create(CreateOrderRequest request) {
         // get user id
