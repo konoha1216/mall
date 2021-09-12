@@ -1,6 +1,7 @@
 package com.mct.mall.service;
 
 import com.mct.mall.model.request.CreateOrderRequest;
+import com.mct.mall.model.vo.OrderVO;
 
 /**
  * @description: order service
@@ -13,4 +14,6 @@ public interface OrderService {
 
 
     String create(CreateOrderRequest request);
+
+    OrderVO detail(String orderCode);
 }

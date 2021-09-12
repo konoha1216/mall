@@ -1,6 +1,8 @@
 package com.mct.mall.model.dao;
 
 import com.mct.mall.model.pojo.OrderItem;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderItemMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +16,6 @@ public interface OrderItemMapper {
     int updateByPrimaryKeySelective(OrderItem record);
 
     int updateByPrimaryKey(OrderItem record);
+
+    List<OrderItem> selectByOrderCode(@Param("orderCode") String orderCode);
 }
