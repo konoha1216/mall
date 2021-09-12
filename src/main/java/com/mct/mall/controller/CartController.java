@@ -59,4 +59,20 @@ public class CartController {
         List<CartVO> cartVOS = cartService.delete(userId, productId);
         return ApiRestResponse.success(cartVOS);
     }
+
+    @ApiOperation("change the 'selected' status of a record in the cart")
+    @PostMapping("/select")
+    public ApiRestResponse select(@RequestParam Integer productId, @RequestParam Integer selected) {
+        Integer userId = UserFilter.currentUser.getId();
+        List<CartVO> cartVOS = cartService.select(userId, productId, selected);
+        return ApiRestResponse.success(cartVOS);
+    }
+
+    @ApiOperation("change all the 'selected' status of records under a user in the cart")
+    @PostMapping("/selectAll")
+    public ApiRestResponse selectAll(@RequestParam Integer selected) {
+        Integer userId = UserFilter.currentUser.getId();
+        List<CartVO> cartVOS = cartService.selectAll(userId, selected);
+        return ApiRestResponse.success(cartVOS);
+    }
 }

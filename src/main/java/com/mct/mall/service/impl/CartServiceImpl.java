@@ -98,4 +98,30 @@ public class CartServiceImpl implements CartService {
         }
         return this.list(userId);
     }
+
+    @Override
+    public List<CartVO> select(Integer userId, Integer productId, Integer selected) {
+        Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
+        if (cart == null) {
+            throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+        } else {
+//            cart.setSelected(status);
+//            cartMapper.updateByPrimaryKeySelective(cart);
+            cartMapper.selectOrNot(userId, productId, selected);
+        }
+        return this.list(userId);
+    }
+
+    @Override
+    public List<CartVO> selectAll(Integer userId, Integer selected) {
+        List<CartVO> cartVOS = cartMapper.selectList(userId);
+        if (cartVOS == null) {
+            throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+        } else {
+//            cart.setSelected(status);
+//            cartMapper.updateByPrimaryKeySelective(cart);
+            cartMapper.selectOrNot(userId, null, selected);
+        }
+        return this.list(userId);
+    }
 }
