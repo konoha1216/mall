@@ -1,5 +1,7 @@
 package com.mct.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mct.mall.common.Constant;
 import com.mct.mall.common.Constant.Cart;
 import com.mct.mall.common.Constant.OrderStatusEnum;
@@ -182,4 +184,24 @@ public class OrderServiceImpl implements OrderService {
         orderVO.setOrderStatusName(OrderStatusEnum.codeOf(orderVO.getOrderStatus()).getValue());
         return orderVO;
     }
+
+    @Override
+    public PageInfo listForCustomer(Integer pageNum, Integer pageSize) {
+        Integer userId = UserFilter.currentUser.getId();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> orderList = orderMapper.selectForCustomer(userId);
+        List<OrderVO> orderVOList = orderListToOrderVOList(orderList);
+        PageInfo pageInfo = new PageInfo<>(orderList);
+        pageInfo.setList(orderVOList);
+        return pageInfo;
+    }
+
+    private List<OrderVO> orderListToOrderVOList(List<Order> orderList) {
+        ArrayList<OrderVO> orderVOList = new ArrayList<>();
+        for (Order order: orderList) {
+            orderVOList.add(getOrderVO(order));
+        }
+        return orderVOList;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.mct.mall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.mct.mall.common.ApiRestResponse;
 import com.mct.mall.model.request.CreateOrderRequest;
 import com.mct.mall.model.vo.OrderVO;
@@ -35,10 +36,17 @@ public class OrderController {
         return ApiRestResponse.success(orderCode);
     }
 
-    @ApiOperation("check the detail of a order")
+    @ApiOperation("show the detail of a order")
     @GetMapping("order/detail")
     public ApiRestResponse detail(@RequestParam String orderCode) {
         OrderVO orderVO = orderService.detail(orderCode);
         return ApiRestResponse.success(orderVO);
+    }
+
+    @ApiOperation("show the order list at front end")
+    @GetMapping("order/list")
+    public ApiRestResponse list(@RequestParam Integer pageNum, Integer pageSize) {
+        PageInfo pageInfo = orderService.listForCustomer(pageNum, pageSize);
+        return ApiRestResponse.success(pageInfo);
     }
 }

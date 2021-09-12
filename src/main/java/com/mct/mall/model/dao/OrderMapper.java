@@ -1,6 +1,7 @@
 package com.mct.mall.model.dao;
 
 import com.mct.mall.model.pojo.Order;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
@@ -17,4 +18,6 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     Order selectByOrderCode(@Param("orderCode") String orderCode);
+
+    List<Order> selectForCustomer(@Param("userId") Integer userId);
 }

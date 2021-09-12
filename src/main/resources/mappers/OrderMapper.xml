@@ -219,4 +219,14 @@
     where
     order_no = #{orderCode}
   </select>
+
+  <select id="selectForCustomer" resultMap="BaseResultMap" parameterType="integer">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    mct_mall_order
+    where
+    user_id = #{userId}
+    Order By create_time desc
+  </select>
 </mapper>
