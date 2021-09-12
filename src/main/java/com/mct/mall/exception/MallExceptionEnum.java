@@ -27,6 +27,8 @@ public enum MallExceptionEnum {
     PRODUCT_FETCH_FAILED(10017, "商品获取失败"),
     NOT_SALE(10018, "商品状态不可售"),
     NOT_ENOUGH(10019, "库存不足"),
+    CART_EMPTY(10020, "购物车已勾选商品为空"),
+    NO_ENUM(10021, "未找对对应的枚举类型"),
 
     SYSTEM_ERROR(20001,"系统异常");
     Integer code;
