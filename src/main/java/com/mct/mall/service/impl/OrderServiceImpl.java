@@ -220,6 +220,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public PageInfo listForAdmin(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> orderList = orderMapper.selectAllForAdmin();
+        List<OrderVO> orderVOList = orderListToOrderVOList(orderList);
+        PageInfo pageInfo = new PageInfo<>(orderList);
+        pageInfo.setList(orderVOList);
+        return pageInfo;
+    }
+
+    @Override
     public void cancel(String orderNo) {
         Order order = orderMapper.selectByOrderCode(orderNo);
         if (order == null) {

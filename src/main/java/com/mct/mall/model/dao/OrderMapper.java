@@ -20,4 +20,6 @@ public interface OrderMapper {
     Order selectByOrderCode(@Param("orderCode") String orderCode);
 
     List<Order> selectForCustomer(@Param("userId") Integer userId);
+
+    List<Order> selectAllForAdmin();
 }

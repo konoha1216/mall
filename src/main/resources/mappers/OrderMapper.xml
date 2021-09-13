@@ -229,4 +229,12 @@
     user_id = #{userId}
     Order By create_time desc
   </select>
+
+  <select id="selectAllForAdmin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    mct_mall_order
+    Order By create_time desc
+  </select>
 </mapper>
