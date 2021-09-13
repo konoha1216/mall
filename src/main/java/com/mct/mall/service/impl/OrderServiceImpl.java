@@ -24,6 +24,7 @@ import com.mct.mall.service.CartService;
 import com.mct.mall.service.OrderService;
 import com.mct.mall.util.OrderCodeFactory;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
@@ -202,6 +203,29 @@ public class OrderServiceImpl implements OrderService {
             orderVOList.add(getOrderVO(order));
         }
         return orderVOList;
+    }
+
+    @Override
+    public void cancel(String orderNo) {
+        Order order = orderMapper.selectByOrderCode(orderNo);
+        if (order == null) {
+            throw new MallException(MallExceptionEnum.NO_ORDER);
+        }
+
+        // validate the user
+        // if order exists, we need to check if the user is correct
+        Integer userId = UserFilter.currentUser.getId();
+        if (!order.getUserId().equals(userId)) {
+            throw new MallException(MallExceptionEnum.NOT_YOUR_ORDER);
+        }
+
+        if (order.getOrderStatus().equals(OrderStatusEnum.NOT_PAID.getCode())) {
+            order.setOrderStatus(OrderStatusEnum.CANCELED.getCode());
+            order.setEndTime(new Date());
+            orderMapper.updateByPrimaryKeySelective(order);
+        } else {
+            throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);
+        }
     }
 
 }

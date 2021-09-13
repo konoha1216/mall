@@ -19,4 +19,6 @@ public interface OrderService {
     OrderVO detail(String orderCode);
 
     PageInfo listForCustomer(Integer pageNum, Integer pageSize);
+
+    void cancel(String orderNo);
 }

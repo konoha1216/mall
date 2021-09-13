@@ -38,8 +38,8 @@ public class OrderController {
 
     @ApiOperation("show the detail of a order")
     @GetMapping("order/detail")
-    public ApiRestResponse detail(@RequestParam String orderCode) {
-        OrderVO orderVO = orderService.detail(orderCode);
+    public ApiRestResponse detail(@RequestParam String orderNo) {
+        OrderVO orderVO = orderService.detail(orderNo);
         return ApiRestResponse.success(orderVO);
     }
 
@@ -48,5 +48,12 @@ public class OrderController {
     public ApiRestResponse list(@RequestParam Integer pageNum, Integer pageSize) {
         PageInfo pageInfo = orderService.listForCustomer(pageNum, pageSize);
         return ApiRestResponse.success(pageInfo);
+    }
+
+    @ApiOperation("cancel a order")
+    @PostMapping("order/cancel")
+    public ApiRestResponse cancel(@RequestParam String orderNo) {
+        orderService.cancel(orderNo);
+        return ApiRestResponse.success();
     }
 }
