@@ -27,4 +27,8 @@ public interface OrderService {
     String qrcode(String orderNo);
 
     void pay(String orderNo);
+
+    void delivered(String orderNo);
+
+    void finish(String orderNo);
 }

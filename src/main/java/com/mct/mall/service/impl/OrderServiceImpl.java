@@ -17,12 +17,14 @@ import com.mct.mall.model.dao.ProductMapper;
 import com.mct.mall.model.pojo.Order;
 import com.mct.mall.model.pojo.OrderItem;
 import com.mct.mall.model.pojo.Product;
+import com.mct.mall.model.pojo.User;
 import com.mct.mall.model.request.CreateOrderRequest;
 import com.mct.mall.model.vo.CartVO;
 import com.mct.mall.model.vo.OrderItemVO;
 import com.mct.mall.model.vo.OrderVO;
 import com.mct.mall.service.CartService;
 import com.mct.mall.service.OrderService;
+import com.mct.mall.service.UserService;
 import com.mct.mall.util.OrderCodeFactory;
 import com.mct.mall.util.QRCodeGenerator;
 import java.io.IOException;
@@ -64,6 +66,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     OrderItemMapper orderItemMapper;
+
+    @Resource
+    UserService userService;
 
     @Value("${file.upload.ip}")
     String ip;
@@ -280,6 +285,45 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOrderStatus().equals(OrderStatusEnum.NOT_PAID.getCode())) {
             order.setOrderStatus(OrderStatusEnum.PAID.getCode());
             order.setPayTime(new Date());
+            orderMapper.updateByPrimaryKeySelective(order);
+        } else {
+            throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);
+        }
+    }
+
+    @Override
+    public void delivered(String orderNo) {
+        Order order = orderMapper.selectByOrderCode(orderNo);
+        if (order == null) {
+            throw new MallException(MallExceptionEnum.NO_ORDER);
+        }
+
+        if (order.getOrderStatus().equals(OrderStatusEnum.PAID.getCode())) {
+            order.setOrderStatus(OrderStatusEnum.DELIVERED.getCode());
+            order.setDeliveryTime(new Date());
+            orderMapper.updateByPrimaryKeySelective(order);
+        } else {
+            throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);
+        }
+    }
+
+    @Override
+    public void finish(String orderNo) {
+        Order order = orderMapper.selectByOrderCode(orderNo);
+        if (order == null) {
+            throw new MallException(MallExceptionEnum.NO_ORDER);
+        }
+
+        User user = UserFilter.currentUser;
+        boolean checkAdminRole = userService.checkAdminRole(user);
+        // normal customer can only finish his/her own order
+        if (!checkAdminRole && !order.getUserId().equals(user.getId())) {
+            throw new MallException(MallExceptionEnum.NOT_YOUR_ORDER);
+        }
+
+        if (order.getOrderStatus().equals(OrderStatusEnum.DELIVERED.getCode())) {
+            order.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+            order.setEndTime(new Date());
             orderMapper.updateByPrimaryKeySelective(order);
         } else {
             throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);

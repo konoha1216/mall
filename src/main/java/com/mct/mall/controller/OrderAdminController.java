@@ -28,4 +28,22 @@ public class OrderAdminController {
         PageInfo pageInfo = orderService.listForAdmin(pageNum, pageSize);
         return ApiRestResponse.success(pageInfo);
     }
+
+    /**
+     * 0:canceled 10:not paid 20:paid 30:delivered 40:finished
+     * @return
+     */
+    @GetMapping("admin/order/delivered")
+    @ApiOperation("admin deliver a order")
+    public ApiRestResponse delivered(String orderNo) {
+        orderService.delivered(orderNo);
+        return ApiRestResponse.success();
+    }
+
+    @GetMapping("admin/order/finished")
+    @ApiOperation("admin/customer finish a order")
+    public ApiRestResponse finish(String orderNo) {
+        orderService.finish(orderNo);
+        return ApiRestResponse.success();
+    }
 }
