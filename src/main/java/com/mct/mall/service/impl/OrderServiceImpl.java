@@ -28,6 +28,8 @@ import com.mct.mall.service.UserService;
 import com.mct.mall.util.OrderCodeFactory;
 import com.mct.mall.util.QRCodeGenerator;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -261,6 +263,13 @@ public class OrderServiceImpl implements OrderService {
     public String qrcode(String orderNo) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+
+        // 本季机测试用
+//        try {
+//            ip = InetAddress.getLocalHost().getHostAddress();
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
 
         String address = ip + ":" + request.getLocalPort();
         String payUrl = "http://" + address + "/pag?orderNo=" + orderNo;
