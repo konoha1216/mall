@@ -2,6 +2,7 @@ package com.mct.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.zxing.WriterException;
 import com.mct.mall.common.Constant;
 import com.mct.mall.common.Constant.Cart;
 import com.mct.mall.common.Constant.OrderStatusEnum;
@@ -23,15 +24,21 @@ import com.mct.mall.model.vo.OrderVO;
 import com.mct.mall.service.CartService;
 import com.mct.mall.service.OrderService;
 import com.mct.mall.util.OrderCodeFactory;
+import com.mct.mall.util.QRCodeGenerator;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * @description: order service implement class
@@ -57,6 +64,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     OrderItemMapper orderItemMapper;
+
+    @Value("${file.upload.ip}")
+    String ip;
+
+    final static int width = 350;
+
+    final static int height = 350;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -226,6 +240,24 @@ public class OrderServiceImpl implements OrderService {
         } else {
             throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);
         }
+    }
+
+    @Override
+    public String qrcode(String orderNo) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+
+        String address = ip + ":" + request.getLocalPort();
+        String payUrl = "http://" + address + "/pag?orderNo=" + orderNo;
+        try {
+            QRCodeGenerator.generateQRCodeImage(payUrl, width, height, Constant.FILE_UPLOAD_DIR + orderNo + ".png");
+        } catch (WriterException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String pngAddress = "http://" + address + "/images/" + orderNo + ".png";
+        return pngAddress;
     }
 
 }
