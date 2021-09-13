@@ -272,7 +272,7 @@ public class OrderServiceImpl implements OrderService {
 //        }
 
         String address = ip + ":" + request.getLocalPort();
-        String payUrl = "http://" + address + "/pag?orderNo=" + orderNo;
+        String payUrl = "http://" + address + "/pay?orderNo=" + orderNo;
         try {
             QRCodeGenerator.generateQRCodeImage(payUrl, width, height, Constant.FILE_UPLOAD_DIR + orderNo + ".png");
         } catch (WriterException e) {
