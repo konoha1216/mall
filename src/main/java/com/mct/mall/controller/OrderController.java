@@ -63,4 +63,11 @@ public class OrderController {
         String pngAddress = orderService.qrcode(orderNo);
         return ApiRestResponse.success(pngAddress);
     }
+
+    @ApiOperation("pay a order")
+    @GetMapping("pay")
+    public ApiRestResponse pay(@RequestParam String orderNo) {
+        orderService.pay(orderNo);
+        return ApiRestResponse.success();
+    }
 }

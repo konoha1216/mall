@@ -270,4 +270,19 @@ public class OrderServiceImpl implements OrderService {
         return pngAddress;
     }
 
+    @Override
+    public void pay(String orderNo) {
+        Order order = orderMapper.selectByOrderCode(orderNo);
+        if (order == null) {
+            throw new MallException(MallExceptionEnum.NO_ORDER);
+        }
+
+        if (order.getOrderStatus().equals(OrderStatusEnum.NOT_PAID.getCode())) {
+            order.setOrderStatus(OrderStatusEnum.PAID.getCode());
+            order.setPayTime(new Date());
+            orderMapper.updateByPrimaryKeySelective(order);
+        } else {
+            throw new MallException(MallExceptionEnum.WRONG_ORDER_STATUS);
+        }
+    }
 }
