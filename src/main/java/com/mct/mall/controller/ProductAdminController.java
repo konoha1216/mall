@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -112,7 +113,7 @@ public class ProductAdminController {
     }
 
     @ApiOperation("后台商品列表")
-    @PostMapping("admin/product/list")
+    @GetMapping("admin/product/list")
     @ResponseBody
     public ApiRestResponse list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         PageInfo pageInfo = productService.listForAdmin(pageNum, pageSize);

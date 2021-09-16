@@ -56,7 +56,7 @@ public class UserController {
         return ApiRestResponse.success();
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     @ResponseBody
     public ApiRestResponse login(@RequestParam("userName") String userName,
                                  @RequestParam("password") String password,
@@ -97,7 +97,7 @@ public class UserController {
         return ApiRestResponse.success();
     }
 
-    @PostMapping("/adminLogin")
+    @GetMapping("/adminLogin")
     @ResponseBody
     public ApiRestResponse adminLogin(@RequestParam("userName") String userName,
                                  @RequestParam("password") String password,
