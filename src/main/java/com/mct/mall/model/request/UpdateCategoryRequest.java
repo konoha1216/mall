@@ -65,4 +65,14 @@ public class UpdateCategoryRequest {
         this.orderNum = orderNum;
     }
 
+    @Override
+    public String toString() {
+        return "UpdateCategoryRequest{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", type=" + type +
+            ", parentId=" + parentId +
+            ", orderNum=" + orderNum +
+            '}';
+    }
 }

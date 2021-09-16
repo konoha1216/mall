@@ -82,4 +82,16 @@ public class AddProductRequest {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "AddProductRequest{" +
+            "name='" + name + '\'' +
+            ", image='" + image + '\'' +
+            ", detail='" + detail + '\'' +
+            ", categoryId=" + categoryId +
+            ", price=" + price +
+            ", stock=" + stock +
+            ", status=" + status +
+            '}';
+    }
 }
