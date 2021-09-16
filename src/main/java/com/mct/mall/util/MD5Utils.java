@@ -1,13 +1,11 @@
 package com.mct.mall.util;
 
 import com.mct.mall.common.Constant;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/10 10:27 下午

@@ -3,7 +3,6 @@ package com.mct.mall.model.query;
 import java.util.List;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/9/5 9:47 下午

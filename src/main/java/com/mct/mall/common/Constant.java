@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/10 10:31 下午

@@ -1,13 +1,11 @@
 package com.mct.mall.service.impl;
 
-import com.github.pagehelper.Constant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mct.mall.common.Constant.ProductListOrderBy;
 import com.mct.mall.exception.MallException;
 import com.mct.mall.exception.MallExceptionEnum;
 import com.mct.mall.model.dao.ProductMapper;
-import com.mct.mall.model.pojo.Category;
 import com.mct.mall.model.pojo.Product;
 import com.mct.mall.model.query.ProductListQuery;
 import com.mct.mall.model.request.AddProductRequest;
@@ -21,10 +19,8 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/22 11:49 下午

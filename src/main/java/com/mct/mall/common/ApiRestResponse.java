@@ -3,7 +3,6 @@ package com.mct.mall.common;
 import com.mct.mall.exception.MallExceptionEnum;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/8 9:52 下午

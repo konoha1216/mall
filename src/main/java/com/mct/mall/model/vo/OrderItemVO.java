@@ -1,6 +1,5 @@
 package com.mct.mall.model.vo;
 
-import java.util.Date;
 
 public class OrderItemVO {
 

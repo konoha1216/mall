@@ -3,10 +3,8 @@ package com.mct.mall.filter;
 
 import com.mct.mall.common.Constant;
 import com.mct.mall.model.pojo.User;
-import com.mct.mall.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.Resource;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -26,8 +24,6 @@ import javax.servlet.http.HttpSession;
  * @version:v1.0
  */
 public class UserFilter implements Filter {
-    @Resource
-    UserService userService;
 
     public static User currentUser;
 

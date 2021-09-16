@@ -1,7 +1,6 @@
 package com.mct.mall.exception;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/8 10:02 下午

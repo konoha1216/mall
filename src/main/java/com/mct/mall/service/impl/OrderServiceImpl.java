@@ -28,8 +28,6 @@ import com.mct.mall.service.UserService;
 import com.mct.mall.util.OrderCodeFactory;
 import com.mct.mall.util.QRCodeGenerator;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

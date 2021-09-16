@@ -8,9 +8,7 @@ import com.mct.mall.model.pojo.User;
 import com.mct.mall.service.UserService;
 import java.security.NoSuchAlgorithmException;
 import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding.Use;
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @description: TODO
  * @author: zhengran
  * @modified By: zhengran
  * @date: Created in 2021/8/8 7:07 下午

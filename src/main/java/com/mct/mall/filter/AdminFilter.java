@@ -1,10 +1,7 @@
 package com.mct.mall.filter;
 
 
-import com.mct.mall.common.ApiRestResponse;
 import com.mct.mall.common.Constant;
-import com.mct.mall.exception.MallExceptionEnum;
-import com.mct.mall.model.pojo.Category;
 import com.mct.mall.model.pojo.User;
 import com.mct.mall.service.UserService;
 import java.io.IOException;
@@ -17,12 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.BeanUtils;
-import org.springframework.http.HttpRequest;
 
 /**
  * @description: 管理员校验
