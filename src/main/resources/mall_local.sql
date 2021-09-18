@@ -9,12 +9,12 @@ SET NAMES utf8mb4;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table imooc_mall_cart
+# Dump of table mct_mall_cart
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_cart`;
+DROP TABLE IF EXISTS `mct_mall_cart`;
 
-CREATE TABLE `imooc_mall_cart` (
+CREATE TABLE `mct_mall_cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '购物车id',
   `product_id` int(11) NOT NULL COMMENT '商品id',
   `user_id` int(11) NOT NULL COMMENT '用户id',
@@ -27,12 +27,12 @@ CREATE TABLE `imooc_mall_cart` (
 
 
 
-# Dump of table imooc_mall_category
+# Dump of table mct_mall_category
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_category`;
+DROP TABLE IF EXISTS `mct_mall_category`;
 
-CREATE TABLE `imooc_mall_category` (
+CREATE TABLE `mct_mall_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '分类目录名称',
   `type` int(11) NOT NULL COMMENT '分类目录级别，例如1代表一级，2代表二级，3代表三级',
@@ -43,10 +43,10 @@ CREATE TABLE `imooc_mall_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='商品分类 ';
 
-LOCK TABLES `imooc_mall_category` WRITE;
-/*!40000 ALTER TABLE `imooc_mall_category` DISABLE KEYS */;
+LOCK TABLES `mct_mall_category` WRITE;
+/*!40000 ALTER TABLE `mct_mall_category` DISABLE KEYS */;
 
-INSERT INTO `imooc_mall_category` (`id`, `name`, `type`, `parent_id`, `order_num`, `create_time`, `update_time`)
+INSERT INTO `mct_mall_category` (`id`, `name`, `type`, `parent_id`, `order_num`, `create_time`, `update_time`)
 VALUES
 	(3,'新鲜水果',1,0,1,'2019-12-18 01:17:00','2019-12-28 17:11:26'),
 	(4,'橘子橙子',2,3,1,'2019-12-18 01:17:00','2019-12-28 16:25:10'),
@@ -68,16 +68,16 @@ VALUES
 	(27,'美味菌菇',1,0,7,'2019-12-20 13:45:28','2020-02-10 23:20:36'),
 	(28,'其他水果',2,3,4,'2019-12-18 01:17:00','2019-12-28 16:25:12');
 
-/*!40000 ALTER TABLE `imooc_mall_category` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mct_mall_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table imooc_mall_order
+# Dump of table mct_mall_order
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_order`;
+DROP TABLE IF EXISTS `mct_mall_order`;
 
-CREATE TABLE `imooc_mall_order` (
+CREATE TABLE `mct_mall_order` (
   `id` int(64) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `order_no` varchar(128) NOT NULL DEFAULT '' COMMENT '订单号（非主键id）',
   `user_id` int(64) NOT NULL COMMENT '用户id',
@@ -98,12 +98,12 @@ CREATE TABLE `imooc_mall_order` (
 
 
 
-# Dump of table imooc_mall_order_item
+# Dump of table mct_mall_order_item
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_order_item`;
+DROP TABLE IF EXISTS `mct_mall_order_item`;
 
-CREATE TABLE `imooc_mall_order_item` (
+CREATE TABLE `mct_mall_order_item` (
   `id` int(64) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `order_no` varchar(128) NOT NULL DEFAULT '' COMMENT '归属订单id',
   `product_id` int(11) NOT NULL COMMENT '商品id',
@@ -119,12 +119,12 @@ CREATE TABLE `imooc_mall_order_item` (
 
 
 
-# Dump of table imooc_mall_product
+# Dump of table mct_mall_product
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_product`;
+DROP TABLE IF EXISTS `mct_mall_product`;
 
-CREATE TABLE `imooc_mall_product` (
+CREATE TABLE `mct_mall_product` (
   `id` int(64) NOT NULL AUTO_INCREMENT COMMENT '商品主键id',
   `name` varchar(100) NOT NULL COMMENT '商品名称',
   `image` varchar(500) NOT NULL DEFAULT '' COMMENT '产品图片,相对路径地址',
@@ -138,10 +138,10 @@ CREATE TABLE `imooc_mall_product` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='商品表';
 
-LOCK TABLES `imooc_mall_product` WRITE;
-/*!40000 ALTER TABLE `imooc_mall_product` DISABLE KEYS */;
+LOCK TABLES `mct_mall_product` WRITE;
+/*!40000 ALTER TABLE `mct_mall_product` DISABLE KEYS */;
 
-INSERT INTO `imooc_mall_product` (`id`, `name`, `image`, `detail`, `category_id`, `price`, `stock`, `status`, `create_time`, `update_time`)
+INSERT INTO `mct_mall_product` (`id`, `name`, `image`, `detail`, `category_id`, `price`, `stock`, `status`, `create_time`, `update_time`)
 VALUES
 	(2,'澳洲进口大黑车厘子大樱桃包甜黑樱桃大果多汁 500g 特大果','http://111.231.103.117:8081/images/chelizi2.jpg','商品毛重：1.0kg货号：608323093445原产地：智利类别：美早热卖时间：1月，11月，12月国产/进口：进口售卖方式：单品',14,50,100,1,'2019-12-18 16:08:15','2020-02-11 00:08:25'),
 	(3,'茶树菇 美味菌菇 东北山珍 500g','http://111.231.103.117:8081/images/chashugu.jpg','商品名：茶树菇 商品特点：美味菌菇 东北山珍 500g',15,1000,6,1,'2019-12-18 16:10:50','2020-02-11 00:42:42'),
@@ -164,16 +164,16 @@ VALUES
 	(41,'羊肉卷 内蒙羔羊肉 鲜嫩 500g/袋 首农出品 羊排肉卷 火锅食材','http://111.231.103.117:8081/images/yangroujuan.jpg','商品名称：首食惠羊排片商品编号：4836347商品毛重：0.51kg商品产地：辽宁省大连市保存状态：冷冻品种：其它国产/进口：进口饲养方式：散养类别：羊肉片/卷包装：简装烹饪建议：火锅，炒菜，炖菜原产地：新西兰',16,222,222,1,'2019-12-28 16:06:34','2020-02-11 00:48:03'),
 	(42,'甜玉米 切好 香甜','http://111.231.103.117:8081/images/tianyumi.jpg','品牌： 绿鲜知（greenseer）\n商品名称：绿鲜知甜玉米商品编号：4983604商品毛重：1.1kg商品产地：云南玉溪类别：玉米',18,240,222,1,'2019-12-28 16:06:34','2020-02-11 00:52:19');
 
-/*!40000 ALTER TABLE `imooc_mall_product` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mct_mall_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table imooc_mall_user
+# Dump of table mct_mall_user
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `imooc_mall_user`;
+DROP TABLE IF EXISTS `mct_mall_user`;
 
-CREATE TABLE `imooc_mall_user` (
+CREATE TABLE `mct_mall_user` (
   `id` int(64) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
   `password` varchar(50) NOT NULL COMMENT '用户密码，MD5加密',
@@ -184,10 +184,10 @@ CREATE TABLE `imooc_mall_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='用户表 ';
 
-LOCK TABLES `imooc_mall_user` WRITE;
-/*!40000 ALTER TABLE `imooc_mall_user` DISABLE KEYS */;
+LOCK TABLES `mct_mall_user` WRITE;
+/*!40000 ALTER TABLE `mct_mall_user` DISABLE KEYS */;
 
-INSERT INTO `imooc_mall_user` (`id`, `username`, `password`, `personalized_signature`, `role`, `create_time`, `update_time`)
+INSERT INTO `mct_mall_user` (`id`, `username`, `password`, `personalized_signature`, `role`, `create_time`, `update_time`)
 VALUES
 	(1,'1','1','3',1,'2019-12-16 02:37:33','2020-02-09 18:41:12'),
 	(2,'xiaomu','AWRuqaxc6iryhHuA4OnFag==','更新了我的签名',2,'2019-12-17 15:11:32','2020-02-10 09:52:12'),
@@ -199,7 +199,7 @@ VALUES
 	(8,'你好4','12345678','',1,'2020-02-09 19:49:54','2020-02-09 19:49:54'),
 	(9,'xiaomu2','AWRuqaxc6iryhHuA4OnFag==','祝你今天好心情',2,'2020-02-09 20:39:47','2020-02-11 00:56:02');
 
-/*!40000 ALTER TABLE `imooc_mall_user` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mct_mall_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
